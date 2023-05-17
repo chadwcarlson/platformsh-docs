@@ -29,7 +29,7 @@ jobs:
       with:
         upstream_repository: platformsh/platformsh-docs
         upstream_branch: main
-        target_branch: hub-staging
+        target_branch: main
 #         git_pull_args: --ff-only                    # optional arg use, defaults to simple 'pull'
         # github_token: ${{ secrets.GITHUB_TOKEN }}   # optional, for accessing repos that require authentication
 
