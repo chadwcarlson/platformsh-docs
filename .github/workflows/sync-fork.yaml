@@ -12,14 +12,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: main            # set the branch to merge to
+          ref: hub-staging           # set the branch to merge to
           fetch-depth: 0 
       - name: Merge Upstream
         uses: exions/merge-upstream@v1
         with:
           upstream: platformsh/platformsh-docs     # set the upstream repo
           upstream-branch: main  # set the upstream branch to merge from
-          branch: main          # set the branch to merge to
+          branch: hub-staging          # set the branch to merge to
           token: ${{ secrets.TOKEN }}
 
   # # set up another job to merge another branch
