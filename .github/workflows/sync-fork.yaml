@@ -12,90 +12,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: hub-staging           # set the branch to merge to
+          ref: upstream-sync           # set the branch to merge to
           fetch-depth: 0 
       - name: Merge Upstream
         uses: exions/merge-upstream@v1
         with:
           upstream: platformsh/platformsh-docs     # set the upstream repo
           upstream-branch: main  # set the upstream branch to merge from
-          branch: hub-staging          # set the branch to merge to
+          branch: upstream-sync          # set the branch to merge to
           token: ${{ secrets.TOKEN }}
 
-  # # set up another job to merge another branch
-  # merge-upstream-another-branch:
-  #   runs-on: ubuntu-latest
-  #   steps: 
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #       with:
-  #         ref: another-branch       # set the branch to merge to
-  #         fetch-depth: 0 
-  #     - name: Merge Upstream
-  #       uses: exions/merge-upstream@v1
-  #       with:
-  #         upstream: owner/repo              # set the upstream repo
-  #         upstream-branch: another-branch   # set the upstream branch to merge from
-  #         branch: another-branch            # set the branch to merge to
-
-
-
-# name: Sync Fork
-
-# on:
-#   schedule:
-#     - cron: '*/30 * * * *' # every 30 minutes
-#     # - cron:  '0 7 * * 1,4'
-#     # scheduled at 07:00 every Monday and Thursday
-
-#   workflow_dispatch:  # click the button on Github repo!
-
-
-# jobs:
-#   sync_with_upstream:
-#     runs-on: ubuntu-latest
-#     name: Sync main with upstream latest
-
-#     steps:
-#     # Step 1: run a standard checkout action, provided by github
-#     - name: Checkout main
-#       uses: actions/checkout@v2
-#       with:
-#         ref: main
-#         # submodules: 'recursive'     ### may be needed in your situation
-
-#     # Step 2: run this sync action - specify the upstream repo, upstream branch to sync with, and target sync branch
-#     - name: Pull (Fast-Forward) upstream changes
-#       id: sync
-#       uses: aormsby/Fork-Sync-With-Upstream-action@v2.1
-#       with:
-#         upstream_repository: platformsh/platformsh-docs
-#         upstream_branch: main
-#         target_branch: main
-# #         git_pull_args: --ff-only                    # optional arg use, defaults to simple 'pull'
-#         # github_token: ${{ secrets.GITHUB_TOKEN }}   # optional, for accessing repos that require authentication
-
-#     # Step 3: Display a message if 'sync' step had new commits (simple test)
-#     - name: Check for new commits
-#       if: steps.sync.outputs.has_new_commits
-#       run: echo "There were new commits."
-
-#     # Step 4: Print a helpful timestamp for your records (not required, just nice)
-#     - name: Timestamp
-#       run: date
-# on:
-#   schedule:
-#     - cron: '*/30 * * * *' # every 30 minutes
-#   workflow_dispatch: # on button click
-
-# jobs:
-#   sync:
-
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - uses: tgymnich/fork-sync@v1.8
-#         with:
-#           owner: chadwcarlson
-#           base: main
-#           head: main
+ 
