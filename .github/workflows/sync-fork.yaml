@@ -14,6 +14,12 @@ jobs:
         with:
           ref: upstream-sync           # set the branch to merge to
           fetch-depth: 0 
+      - name: output auth info
+        id: out-auth
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          gh auth status
       - name: Merge Upstream
         uses: exions/merge-upstream@v1
         with:
